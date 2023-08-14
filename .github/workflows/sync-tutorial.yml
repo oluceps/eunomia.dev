@@ -32,7 +32,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           commit-message: 'chore: sync tutorial'
-          branch: main
+          branch: sync
           delete-branch: true
           token: ${{ secrets.PAT }}
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
