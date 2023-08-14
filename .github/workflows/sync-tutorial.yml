@@ -43,5 +43,6 @@ jobs:
           title: 'chore: sync tutorial'
           body: >
             Update Report  
-            - update on {{ steps.get-time.outputs.time }}
+
+            - update on ${{ steps.get-time.outputs.time }}
 
