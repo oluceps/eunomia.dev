@@ -28,6 +28,10 @@ jobs:
           cp -rf tutorial/src docs/
           rm -rf tutorial
 
+      - name: Get timestamp
+        id: get-time
+        run: echo "::get-time name=time::$(date +%Y%m%d%H%M)"
+      
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
@@ -35,9 +39,9 @@ jobs:
           branch: sync
           delete-branch: true
           token: ${{ secrets.PAT }}
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          author: actions <action@github.com>
           title: 'chore: sync tutorial'
           body: >
-            Update Report
-            - update on $(date +%Y%m%d%H%M)
+            Update Report  
+            - update on {{ steps.get-time.outputs.time }}
 
