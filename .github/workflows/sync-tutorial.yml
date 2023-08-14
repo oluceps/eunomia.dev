@@ -24,5 +24,6 @@ jobs:
       - name: Observe
         run: |
           echo "Workflow triggered"
-          ls -R bpf-developer-tutorial
+          ls
+          # ls -R bpf-developer-tutorial
           ls -R eunomia.dev
