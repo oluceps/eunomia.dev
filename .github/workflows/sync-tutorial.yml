@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: main
-          path: website
+          # path: website
 
       - name: Checkout tutorial repo
         uses: actions/checkout@v3
@@ -23,9 +23,21 @@ jobs:
           ref: main
           path: tutorial
 
-      - name: Observe
+      - name: test
         run: |
-          echo "Workflow triggered"
-          ls
-          ls -R tutorial
-          ls -R website
+          cp -rf tutorial/src docs/
+          rm -rf tutorial
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'chore: sync tutorial'
+          branch: main
+          delete-branch: true
+          token: ${{ secrets.PAT }}
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: 'chore: sync tutorial'
+          body: >
+            Update Report
+            - update on $(date +%Y%m%d%H%M)
+
